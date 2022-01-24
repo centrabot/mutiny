@@ -29,11 +29,6 @@ export class Bot extends EventEmitter {
     ws: WebSocket
 
     /**
-     * The Bot's user on Revolt
-     */
-    user?: any
-
-    /**
      * A Collection containing the users the bot has access to
      */
     users: Collection
