@@ -20,11 +20,15 @@ class Bot extends events_1.default {
      * Create a new bot
      * @param token The bot's token
      */
-    constructor(token) {
+    constructor(settings) {
         super();
-        this.token = token;
+        if (!settings)
+            throw new Error('Settings are required');
+        if (!settings.token)
+            throw new Error('Token is required');
+        this.token = settings.token;
         this.http = new HTTP_1.HTTP(this, constants_1.constants.BASE_URL);
-        this.ws = new WebSocket_1.WebSocket(this, true);
+        this.ws = new WebSocket_1.WebSocket(this, (settings.debug || false));
         this.users = new Collection_1.Collection();
         this.servers = new Collection_1.Collection();
         this.channels = new Collection_1.Collection();

@@ -134,12 +134,13 @@ class WebSocket {
                     this.pingStatus.lastPingAcknowledged = true;
                     break;
                 case constants_1.constants.WS_EVENTS.Ready:
-                    console.log(message);
-                    this.bot.emit('ready');
+                    for (let user of message.users) {
+                    }
+                    this.bot.emit(constants_1.constants.BOT_EVENTS.Ready);
                     break;
                 case constants_1.constants.WS_EVENTS.Message:
                     const msg = new Message_1.Message(this.bot, message);
-                    this.bot.emit('message', msg);
+                    this.bot.emit(constants_1.constants.BOT_EVENTS.Message, msg);
                     break;
             }
         });

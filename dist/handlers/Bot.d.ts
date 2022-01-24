@@ -4,6 +4,19 @@ import { HTTP } from './HTTP';
 import { WebSocket } from './WebSocket';
 import { Collection } from '../util/Collection';
 /**
+ * Settings for a bot made with Mutiny
+ */
+export interface BotSettings {
+    /**
+     * The bot's token, used to authenticate with Revolt
+     */
+    token: string;
+    /**
+     * Whether debug logging should be enabled
+     */
+    debug: boolean;
+}
+/**
  * Represents a bot made with Mutiny
  *
  * @fires Bot#ready
@@ -38,7 +51,7 @@ export declare class Bot extends EventEmitter {
      * Create a new bot
      * @param token The bot's token
      */
-    constructor(token: string);
+    constructor(settings: BotSettings);
 }
 /**
  * Fired when the bot is successfully logged in and authenticated

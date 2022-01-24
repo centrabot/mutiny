@@ -10,8 +10,27 @@ export declare const constants: {
         Pong: string;
         Ready: string;
         Message: string;
+        MessageUpdate: string;
+        MessageDelete: string;
+        ChannelCreate: string;
+        ChannelUpdate: string;
+        ChannelDelete: string;
+        ChannelGroupJoin: string;
+        ChannelGroupLeave: string;
+        ChannelStartTyping: string;
+        ChannelStopTyping: string;
+        ChannelAck: string;
+        ServerUpdate: string;
+        ServerDelete: string;
+        ServerMemberJoin: string;
+        ServerMemberUpdate: string;
+        ServerMemberLeave: string;
+        ServerRoleUpdate: string;
+        ServerRoleDelete: string;
+        UserUpdate: string;
+        UserRelationship: string;
     };
-    EMITTER_EVENTS: {
+    BOT_EVENTS: {
         Ready: string;
         Message: string;
     };

@@ -155,7 +155,9 @@ export class WebSocket {
                 break
 
             case constants.WS_EVENTS.Ready:
-                console.log(message)
+                for (let user of message.users) {
+                    
+                }
 
                 this.bot.emit(constants.BOT_EVENTS.Ready)
 
