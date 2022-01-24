@@ -1,10 +1,10 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.Message = void 0;
+exports.Channel = void 0;
 /**
  * Represents a basic Channel on Revolt
  */
-class Message {
+class Channel {
     /**
      * Create a new Channel
      * @param bot The Bot that the Channel belongs to
@@ -15,4 +15,4 @@ class Message {
         this._id = raw._id;
     }
 }
-exports.Message = Message;
+exports.Channel = Channel;

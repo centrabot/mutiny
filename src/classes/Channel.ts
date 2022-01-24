@@ -10,7 +10,7 @@ export interface RawChannel {
 /**
  * Represents a basic Channel on Revolt
  */
-export class Message {
+export class Channel {
     /**
      * The bot that this Channel belongs to
      */

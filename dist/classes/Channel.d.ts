@@ -8,7 +8,7 @@ export interface RawChannel {
 /**
  * Represents a basic Channel on Revolt
  */
-export declare class Message {
+export declare class Channel {
     /**
      * The bot that this Channel belongs to
      */

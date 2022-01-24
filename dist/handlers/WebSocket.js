@@ -16,6 +16,7 @@ const constants_1 = require("../constants");
 const Message_1 = require("../classes/Message");
 const User_1 = require("../classes/User");
 const Server_1 = require("../classes/Server");
+const Channel_1 = require("../classes/Channel");
 /**
  * Handles WebSocket connection, authentication and events
  */
@@ -143,6 +144,10 @@ class WebSocket {
                     for (let data of message.servers) {
                         const server = new Server_1.Server(this.bot, data);
                         this.bot.servers.set(server._id, server);
+                    }
+                    for (let data of message.channels) {
+                        const channel = new Channel_1.Channel(this.bot, data);
+                        this.bot.channels.set(channel._id, channel);
                     }
                     this.bot.emit(constants_1.constants.BOT_EVENTS.Ready);
                     break;
