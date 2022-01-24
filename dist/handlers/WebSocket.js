@@ -14,6 +14,7 @@ const ws_1 = require("ws");
 const msgpack_1 = require("@msgpack/msgpack");
 const constants_1 = require("../constants");
 const Message_1 = require("../classes/Message");
+const User_1 = require("../classes/User");
 /**
  * Handles WebSocket connection, authentication and events
  */
@@ -134,7 +135,9 @@ class WebSocket {
                     this.pingStatus.lastPingAcknowledged = true;
                     break;
                 case constants_1.constants.WS_EVENTS.Ready:
-                    for (let user of message.users) {
+                    for (let data of message.users) {
+                        const user = new User_1.User(this.bot, data);
+                        this.bot.users.set(user._id, user);
                     }
                     this.bot.emit(constants_1.constants.BOT_EVENTS.Ready);
                     break;
