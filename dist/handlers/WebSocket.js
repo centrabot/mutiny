@@ -145,6 +145,26 @@ class WebSocket {
                     const msg = new Message_1.Message(this.bot, message);
                     this.bot.emit(constants_1.constants.BOT_EVENTS.Message, msg);
                     break;
+                case constants_1.constants.WS_EVENTS.UserUpdate:
+                    const user = this.bot.users.get(message.id);
+                    if (!user && this.debug)
+                        console.debug(`[WS] Unable to update user ${message.id}, user not found`);
+                    if (!user)
+                        return;
+                    if (message['data']) {
+                        for (const [key, value] of Object.entries(message.data)) {
+                            if (!this.bot.users.get(message.id)[key])
+                                return;
+                            this.bot.users.get(message.id)[key] = value;
+                        }
+                    }
+                    if (message['clear']) {
+                        if (message.clear === 'StatusText')
+                            this.bot.users.get(message.id).status.text = undefined;
+                        if (message.clear === 'Avatar')
+                            this.bot.users.get(message.id).avatar = undefined;
+                    }
+                    break;
             }
         });
     }
