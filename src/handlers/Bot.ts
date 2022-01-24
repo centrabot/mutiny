@@ -7,6 +7,21 @@ import { constants } from '../constants'
 import { Message } from '../classes/Message'
 
 /**
+ * Settings for a bot made with Mutiny
+ */
+export interface BotSettings {
+    /**
+     * The bot's token, used to authenticate with Revolt
+     */
+    token: string
+
+    /**
+     * Whether debug logging should be enabled
+     */
+    debug: boolean
+}
+
+/**
  * Represents a bot made with Mutiny
  * 
  * @fires Bot#ready
@@ -47,13 +62,16 @@ export class Bot extends EventEmitter {
      * Create a new bot
      * @param token The bot's token
      */
-    constructor(token: string) {
+    constructor(settings: BotSettings) {
         super()
 
-        this.token = token
+        if (!settings) throw new Error('Settings are required')
+        if (!settings.token) throw new Error('Token is required')
+
+        this.token = settings.token
 
         this.http = new HTTP(this, constants.BASE_URL)
-        this.ws = new WebSocket(this, true)
+        this.ws = new WebSocket(this, (settings.debug || false))
 
         this.users = new Collection()
         this.servers = new Collection()
