@@ -53,11 +53,69 @@ export declare class Message {
      */
     bot: Bot;
     /**
-     * The ID of the Server
+     * The server's ID
      */
     _id: string;
     /**
-     * Create a new Message
+     * The user ID of the server's owner
+     */
+    owner: string;
+    /**
+     * The server's name
+     */
+    name: string;
+    /**
+     * The server's description
+     */
+    description?: string;
+    /**
+     * An array containing the IDs of the server's channels
+     */
+    channels: string[];
+    /**
+     * An array containing partial objects for the server's categories
+     */
+    categories: any[];
+    /**
+     * The server's system message channels
+     */
+    systemMessages: {
+        userJoined?: string;
+        userLeft?: string;
+        userKicked?: string;
+        userBanned?: string;
+    };
+    /**
+     * An object containing ID->role (key->value) pairs of the server's roles
+     */
+    roles: object;
+    /**
+     * An array containing a pair of tuples, that represent default server and channel permissions (in that order)
+     */
+    defaultPermissions: number[];
+    /**
+     * The server's icon
+     */
+    icon?: File;
+    /**
+     * The server's banner
+     */
+    banner?: File;
+    nsfw: boolean;
+    /**
+     * Bitfield representing the server's flags
+     */
+    flags: number;
+    /**
+     * Whether collecting analytics on the server is enabled. Enabled if server is discoverable.
+     */
+    analytics: boolean;
+    /**
+     * Whether the server is discoverable (through the "Discover Revolt" tab)
+     */
+    discoverable: boolean;
+    /**
+     * Create a new Server
      * @param bot The Bot that the Server belongs to
      * @param raw A raw Server from the API or WebSocket
      */

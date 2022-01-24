@@ -84,7 +84,7 @@ export class User {
     /**
      * The user's avatar object
      */
-    avatar: object | undefined
+    avatar?: File
 
     /**
      * The user's relationships with other known users. Only present if the user is the associated bot user.
@@ -119,7 +119,7 @@ export class User {
     /**
      * If present, indicates the user is a bot and contains bot specific details
      */
-    botInfo: UserBotInformation | undefined
+    botInfo?: UserBotInformation
 
     /**
      * Create a new User
@@ -132,12 +132,12 @@ export class User {
         this._id = raw._id
         this.username = raw.username
         this.avatar = raw.avatar
-        this.relations = raw.relations || undefined
+        this.relations = raw.relations
         this.badges = raw.badges
         this.status = raw.status
         this.relationship = raw.relationship
         this.online = raw.online
         this.flags = raw.flags
-        this.botInfo = raw.bot || undefined
+        this.botInfo = raw.bot
     }
 }

@@ -73,7 +73,7 @@ export declare class User {
     /**
      * The user's avatar object
      */
-    avatar: object | undefined;
+    avatar?: File;
     /**
      * The user's relationships with other known users. Only present if the user is the associated bot user.
      */
@@ -101,7 +101,7 @@ export declare class User {
     /**
      * If present, indicates the user is a bot and contains bot specific details
      */
-    botInfo: UserBotInformation | undefined;
+    botInfo?: UserBotInformation;
     /**
      * Create a new User
      * @param bot The Bot that the User belongs to

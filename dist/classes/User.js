@@ -15,13 +15,13 @@ class User {
         this._id = raw._id;
         this.username = raw.username;
         this.avatar = raw.avatar;
-        this.relations = raw.relations || undefined;
+        this.relations = raw.relations;
         this.badges = raw.badges;
         this.status = raw.status;
         this.relationship = raw.relationship;
         this.online = raw.online;
         this.flags = raw.flags;
-        this.botInfo = raw.bot || undefined;
+        this.botInfo = raw.bot;
     }
 }
 exports.User = User;
