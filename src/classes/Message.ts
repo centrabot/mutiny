@@ -16,7 +16,7 @@ export interface RawMessage {
  */
 export class Message {
     /**
-     * The bot that this Message handler belongs to
+     * The bot that this Message belongs to
      */
     bot: Bot
 
