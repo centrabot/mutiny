@@ -1,10 +1,10 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.Message = void 0;
+exports.Server = void 0;
 /**
  * Represents a Server on Revolt
  */
-class Message {
+class Server {
     /**
      * Create a new Server
      * @param bot The Bot that the Server belongs to
@@ -34,4 +34,4 @@ class Message {
         this.discoverable = raw.discoverable;
     }
 }
-exports.Message = Message;
+exports.Server = Server;

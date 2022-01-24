@@ -47,7 +47,7 @@ export interface RawServerRoles {
 /**
  * Represents a Server on Revolt
  */
-export declare class Message {
+export declare class Server {
     /**
      * The bot that this Server belongs to
      */

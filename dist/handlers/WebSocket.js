@@ -15,6 +15,7 @@ const msgpack_1 = require("@msgpack/msgpack");
 const constants_1 = require("../constants");
 const Message_1 = require("../classes/Message");
 const User_1 = require("../classes/User");
+const Server_1 = require("../classes/Server");
 /**
  * Handles WebSocket connection, authentication and events
  */
@@ -138,6 +139,10 @@ class WebSocket {
                     for (let data of message.users) {
                         const user = new User_1.User(this.bot, data);
                         this.bot.users.set(user._id, user);
+                    }
+                    for (let data of message.servers) {
+                        const server = new Server_1.Server(this.bot, data);
+                        this.bot.servers.set(server._id, server);
                     }
                     this.bot.emit(constants_1.constants.BOT_EVENTS.Ready);
                     break;

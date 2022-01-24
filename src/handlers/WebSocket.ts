@@ -5,6 +5,7 @@ import { constants } from '../constants'
 
 import { Message } from '../classes/Message'
 import { User } from '../classes/User'
+import { Server } from '../classes/Server'
 
 interface WebSocketPingStatus {
     interval: NodeJS.Timer | undefined,
@@ -160,6 +161,12 @@ export class WebSocket {
                     const user = new User(this.bot, data)
 
                     this.bot.users.set(user._id, user)
+                }
+
+                for (let data of message.servers) {
+                    const server = new Server(this.bot, data)
+
+                    this.bot.servers.set(server._id, server)
                 }
 
                 this.bot.emit(constants.BOT_EVENTS.Ready)
