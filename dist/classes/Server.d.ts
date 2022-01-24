@@ -36,7 +36,13 @@ export interface RawServerCategory {
  * Represents the object of roles in a raw server object
  */
 export interface RawServerRoles {
-    [key: string]: {};
+    [key: string]: {
+        name: string;
+        permissions: number[];
+        colour: string;
+        hoist: boolean;
+        rank: number;
+    };
 }
 /**
  * Represents a Server on Revolt
