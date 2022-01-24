@@ -157,14 +157,14 @@ export class WebSocket {
             case constants.WS_EVENTS.Ready:
                 this.bot.user = message.users[0]
 
-                this.bot.emit('ready')
+                this.bot.emit(constants.BOT_EVENTS.Ready)
 
                 break
             
             case constants.WS_EVENTS.Message:
                 const msg = new Message(this.bot, message)
 
-                this.bot.emit('message', msg)
+                this.bot.emit(constants.BOT_EVENTS.Message, msg)
 
                 break
         }
