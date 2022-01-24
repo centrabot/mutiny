@@ -1,0 +1,27 @@
+{
+  "name": "mutiny",
+  "version": "1.0.0",
+  "description": "A TypeScript library for creating Revolt bots",
+  "main": "dist/index.js",
+  "repository": "https://github.com/centrabot/mutiny.git",
+  "author": "ThatTonybo <thattonybo@gmail.com>",
+  "license": "MIT",
+  "private": false,
+  "files": [
+    "dist/"
+  ],
+  "scripts": {
+    "tsc": "tsc -p tsconfig.json",
+    "prepublishOnly": "yarn tsc"
+  },
+  "devDependencies": {
+    "@types/node": "^17.0.10",
+    "@types/ws": "^8.2.2",
+    "typescript": "^4.5.5"
+  },
+  "dependencies": {
+    "@msgpack/msgpack": "^2.7.1",
+    "axios": "^0.25.0",
+    "ws": "^8.4.2"
+  }
+}
