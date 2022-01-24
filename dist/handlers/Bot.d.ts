@@ -17,6 +17,21 @@ export interface BotSettings {
     debug: boolean;
 }
 /**
+ * Represents a file object on Revolt, used for avatars, server icons, banners and attachments
+ */
+export interface File {
+    _id: string;
+    tag: string;
+    size: number;
+    filename: string;
+    metadata: {
+        type: string;
+        width?: number;
+        height?: number;
+    };
+    content_type: string;
+}
+/**
  * Represents a bot made with Mutiny
  *
  * @fires Bot#ready

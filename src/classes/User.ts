@@ -1,4 +1,4 @@
-import { Bot } from '../handlers/Bot'
+import { Bot, File } from '../handlers/Bot'
 
 /**
  * Represents a raw user from the API or WebSocket
@@ -7,18 +7,7 @@ export interface RawUser {
     _id: string,
     username: string,
     // todo: "file" class/"attachment" class of sorts?
-    avatar: {
-        _id: string,
-        tag: string,
-        size: number,
-        filename: string,
-        metadata: {
-            type: string,
-            width?: number,
-            height?: number
-        },
-        content_type: string
-    },
+    avatar: File,
     relations?: UserRelation[],
     badges: number,
     status: {
@@ -55,7 +44,7 @@ export interface UserStatus {
     /**
      * The custom status text, if present
      */
-    text: string | null,
+    text: string | undefined,
 
     /**
      * The presence/status of the user
@@ -95,7 +84,7 @@ export class User {
     /**
      * The user's avatar object
      */
-    avatar: object
+    avatar: object | undefined
 
     /**
      * The user's relationships with other known users. Only present if the user is the associated bot user.
@@ -115,7 +104,7 @@ export class User {
     /**
      * The associated bot user's relationship to the user
      */
-    relationship: string
+    relationship?: string
 
     /**
      * Whether the user is online
