@@ -44,7 +44,7 @@ class HTTP {
                 return res;
             }
             catch (err) {
-                throw err;
+                throw err.response.data.error || err;
             }
         });
     }
@@ -58,14 +58,14 @@ class HTTP {
             try {
                 const res = yield axios_1.default.post(`${this.baseURL}${path}`, {
                     headers: {
-                        'Authorization': this.bot.token
+                        'x-bot-token': this.bot.token
                     },
                     body
                 });
                 return res;
             }
             catch (err) {
-                throw err;
+                throw err.response.data.error || err;
             }
         });
     }

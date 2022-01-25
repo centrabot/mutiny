@@ -41,8 +41,8 @@ export class HTTP {
             })
 
             return res
-        } catch(err) {
-            throw err
+        } catch(err: any) {
+            throw err.response.data.error || err
         }
     }
 
@@ -55,14 +55,14 @@ export class HTTP {
         try {
             const res = await axios.post(`${this.baseURL}${path}`, {
                 headers: {
-                    'Authorization': this.bot.token
+                    'x-bot-token': this.bot.token
                 },
                 body
             })
 
             return res
-        } catch(err) {
-            throw err
+        } catch(err: any) {
+            throw err.response.data.error || err
         }
     }
 }
