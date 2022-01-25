@@ -1,4 +1,5 @@
 import { Bot, File } from '../handlers/Bot';
+import { Collection } from '../util/Collection';
 /**
  * Represents a raw server from the API or WebSocket
  */
@@ -69,9 +70,10 @@ export declare class Server {
      */
     description?: string;
     /**
-     * An array containing the IDs of the server's channels
+     * A Collection containing the server's channels
+     * old-An array containing the IDs of the server's channels
      */
-    channels: string[];
+    channels: Collection;
     /**
      * An array containing partial objects for the server's categories
      */
@@ -101,6 +103,9 @@ export declare class Server {
      * The server's banner
      */
     banner?: File;
+    /**
+     * Whether the server is NSFW
+     */
     nsfw: boolean;
     /**
      * Bitfield representing the server's flags

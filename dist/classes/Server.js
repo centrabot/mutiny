@@ -1,6 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Server = void 0;
+const Collection_1 = require("../util/Collection");
 /**
  * Represents a Server on Revolt
  */
@@ -16,7 +17,8 @@ class Server {
         this.owner = raw.owner;
         this.name = raw.name;
         this.description = raw.description;
-        this.channels = raw.channels;
+        //this.channels = raw.channels
+        this.channels = new Collection_1.Collection();
         this.categories = raw.categories;
         this.systemMessages = {
             userJoined: raw.system_messages.user_joined,
@@ -32,6 +34,12 @@ class Server {
         this.flags = raw.flags;
         this.analytics = raw.analytics;
         this.discoverable = raw.discoverable;
+        for (let channelID of raw.channels) {
+            const data = this.bot.channels.get(channelID);
+            if (!data)
+                return;
+            this.channels.set(channelID, data);
+        }
     }
 }
 exports.Server = Server;

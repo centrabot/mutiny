@@ -1,4 +1,5 @@
 import { Bot, File } from '../handlers/Bot'
+import { Collection } from '../util/Collection'
 
 /**
  * Represents a raw server from the API or WebSocket
@@ -78,9 +79,10 @@ export class Server {
     description?: string
 
     /**
-     * An array containing the IDs of the server's channels
+     * A Collection containing the server's channels
+     * old-An array containing the IDs of the server's channels
      */
-    channels: string[]
+    channels: Collection
 
     /**
      * An array containing partial objects for the server's categories
@@ -149,7 +151,8 @@ export class Server {
         this.owner = raw.owner
         this.name = raw.name
         this.description = raw.description
-        this.channels = raw.channels
+        //this.channels = raw.channels
+        this.channels = new Collection()
         this.categories = raw.categories
         this.systemMessages = {
             userJoined: raw.system_messages.user_joined,
@@ -165,5 +168,12 @@ export class Server {
         this.flags = raw.flags
         this.analytics = raw.analytics
         this.discoverable = raw.discoverable
+
+        for (let channelID of raw.channels) {
+            const data = this.bot.channels.get(channelID)
+            if (!data) return
+
+            this.channels.set(channelID, data)
+        }
     }
 }

@@ -16,7 +16,11 @@ const constants_1 = require("../constants");
 const Message_1 = require("../classes/Message");
 const User_1 = require("../classes/User");
 const Server_1 = require("../classes/Server");
-const Channel_1 = require("../classes/Channel");
+const SavedMessagesChannel_1 = require("../classes/Channels/SavedMessagesChannel");
+const DirectMessageChannel_1 = require("../classes/Channels/DirectMessageChannel");
+const GroupChannel_1 = require("../classes/Channels/GroupChannel");
+const TextChannel_1 = require("../classes/Channels/TextChannel");
+const VoiceChannel_1 = require("../classes/Channels/VoiceChannel");
 /**
  * Handles WebSocket connection, authentication and events
  */
@@ -146,8 +150,18 @@ class WebSocket {
                         this.bot.servers.set(server._id, server);
                     }
                     for (let data of message.channels) {
-                        const channel = new Channel_1.Channel(this.bot, data);
-                        this.bot.channels.set(channel._id, channel);
+                        let channel;
+                        if (data.type === 'SavedMessages')
+                            channel = new SavedMessagesChannel_1.SavedMessagesChannel(this.bot, data);
+                        if (data.type === 'DirectMessage')
+                            channel = new DirectMessageChannel_1.DirectMessageChannel(this.bot, data);
+                        if (data.type === 'Group')
+                            channel = new GroupChannel_1.GroupChannel(this.bot, data);
+                        if (data.type === 'TextChannel')
+                            channel = new TextChannel_1.TextChannel(this.bot, data);
+                        if (data.type === 'VoiceChannel')
+                            channel = new VoiceChannel_1.VoiceChannel(this.bot, data);
+                        this.bot.channels.set(channel === null || channel === void 0 ? void 0 : channel._id, channel);
                     }
                     this.bot.emit(constants_1.constants.BOT_EVENTS.Ready);
                     break;
