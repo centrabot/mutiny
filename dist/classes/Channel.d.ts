@@ -4,6 +4,7 @@ import { Bot } from '../handlers/Bot';
  */
 export interface RawChannel {
     _id: string;
+    channel_type: string;
 }
 /**
  * Represents a basic Channel on Revolt
@@ -17,6 +18,10 @@ export declare class Channel {
      * The ID of the Channel
      */
     _id: string;
+    /**
+     * The type of the channel
+     */
+    type: string;
     /**
      * Create a new Channel
      * @param bot The Bot that the Channel belongs to

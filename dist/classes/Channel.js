@@ -13,6 +13,7 @@ class Channel {
     constructor(bot, raw) {
         this.bot = bot;
         this._id = raw._id;
+        this.type = raw.channel_type;
     }
 }
 exports.Channel = Channel;

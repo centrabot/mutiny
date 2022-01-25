@@ -4,7 +4,8 @@ import { Bot } from '../handlers/Bot'
  * Represents a raw channel from the API or WebSocket
  */
 export interface RawChannel {
-    _id: string
+    _id: string,
+    channel_type: string
 }
 
 /**
@@ -20,6 +21,11 @@ export class Channel {
      * The ID of the Channel
      */
     _id: string
+    
+    /**
+     * The type of the channel
+     */
+    type: string
 
     /**
      * Create a new Channel
@@ -30,5 +36,6 @@ export class Channel {
         this.bot = bot
 
         this._id = raw._id
+        this.type = raw.channel_type
     }
 }

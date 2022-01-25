@@ -6,7 +6,11 @@ import { constants } from '../constants'
 import { Message } from '../classes/Message'
 import { User } from '../classes/User'
 import { Server } from '../classes/Server'
-import { Channel } from '../classes/Channel'
+import { SavedMessagesChannel } from '../classes/Channels/SavedMessagesChannel'
+import { DirectMessageChannel } from '../classes/Channels/DirectMessageChannel'
+import { GroupChannel } from '../classes/Channels/GroupChannel'
+import { TextChannel } from '../classes/Channels/TextChannel'
+import { VoiceChannel } from '../classes/Channels/VoiceChannel'
 
 interface WebSocketPingStatus {
     interval: NodeJS.Timer | undefined,
@@ -171,9 +175,15 @@ export class WebSocket {
                 }
 
                 for (let data of message.channels) {
-                    const channel = new Channel(this.bot, data)
+                    let channel
 
-                    this.bot.channels.set(channel._id, channel)
+                    if (data.type === 'SavedMessages') channel = new SavedMessagesChannel(this.bot, data)
+                    if (data.type === 'DirectMessage') channel = new DirectMessageChannel(this.bot, data)
+                    if (data.type === 'Group') channel = new GroupChannel(this.bot, data)
+                    if (data.type === 'TextChannel') channel = new TextChannel(this.bot, data)
+                    if (data.type === 'VoiceChannel') channel = new VoiceChannel(this.bot, data)
+
+                    this.bot.channels.set(channel?._id, channel)
                 }
 
                 this.bot.emit(constants.BOT_EVENTS.Ready)

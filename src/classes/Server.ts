@@ -117,6 +117,9 @@ export class Server {
      */
     banner?: File
 
+    /**
+     * Whether the server is NSFW
+     */
     nsfw: boolean
 
     /**
