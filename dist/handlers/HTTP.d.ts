@@ -21,7 +21,12 @@ export declare class HTTP {
     /**
      * Make a GET request
      * @param path The path to make the request to
-     * @returns The result of the request
      */
     get(path: string): Promise<AxiosResponse | undefined>;
+    /**
+     * Make a POST request
+     * @param path The path to make the request to
+     * @param body An optional body to send with the request
+     */
+    post(path: string, body?: any): Promise<AxiosResponse | undefined>;
 }

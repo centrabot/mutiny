@@ -21,6 +21,8 @@ export class HTTP {
      * @param baseURL The base URl for every API request
      */
     constructor(bot: Bot, baseURL: string) {
+        if (!bot.token) throw new Error('Token is missing from bot')
+
         this.bot = bot
 
         this.baseURL = baseURL
@@ -29,11 +31,34 @@ export class HTTP {
     /**
      * Make a GET request
      * @param path The path to make the request to
-     * @returns The result of the request
      */
     async get(path: string): Promise<AxiosResponse | undefined> {
         try {
-            const res = await axios.get(`${this.baseURL}${path}`)
+            const res = await axios.get(`${this.baseURL}${path}`, {
+                headers: {
+                    'Authorization': this.bot.token
+                }
+            })
+
+            return res
+        } catch(err) {
+            throw err
+        }
+    }
+
+    /**
+     * Make a POST request
+     * @param path The path to make the request to
+     * @param body An optional body to send with the request
+     */
+    async post(path: string, body?: any): Promise<AxiosResponse | undefined> {
+        try {
+            const res = await axios.post(`${this.baseURL}${path}`, {
+                headers: {
+                    'Authorization': this.bot.token
+                },
+                body
+            })
 
             return res
         } catch(err) {

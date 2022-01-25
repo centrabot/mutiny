@@ -24,18 +24,44 @@ class HTTP {
      * @param baseURL The base URl for every API request
      */
     constructor(bot, baseURL) {
+        if (!bot.token)
+            throw new Error('Token is missing from bot');
         this.bot = bot;
         this.baseURL = baseURL;
     }
     /**
      * Make a GET request
      * @param path The path to make the request to
-     * @returns The result of the request
      */
     get(path) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                const res = yield axios_1.default.get(`${this.baseURL}${path}`);
+                const res = yield axios_1.default.get(`${this.baseURL}${path}`, {
+                    headers: {
+                        'Authorization': this.bot.token
+                    }
+                });
+                return res;
+            }
+            catch (err) {
+                throw err;
+            }
+        });
+    }
+    /**
+     * Make a POST request
+     * @param path The path to make the request to
+     * @param body An optional body to send with the request
+     */
+    post(path, body) {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                const res = yield axios_1.default.post(`${this.baseURL}${path}`, {
+                    headers: {
+                        'Authorization': this.bot.token
+                    },
+                    body
+                });
                 return res;
             }
             catch (err) {
