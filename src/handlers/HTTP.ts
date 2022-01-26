@@ -36,7 +36,7 @@ export class HTTP {
         try {
             const res = await axios.get(`${this.baseURL}${path}`, {
                 headers: {
-                    'Authorization': this.bot.token
+                    'x-bot-token': this.bot.token
                 }
             })
 
@@ -49,15 +49,15 @@ export class HTTP {
     /**
      * Make a POST request
      * @param path The path to make the request to
-     * @param body An optional body to send with the request
+     * @param data Optional data to send with the request
      */
-    async post(path: string, body?: any): Promise<AxiosResponse | undefined> {
+    async post(path: string, data?: any): Promise<AxiosResponse | undefined> {
         try {
             const res = await axios.post(`${this.baseURL}${path}`, {
                 headers: {
                     'x-bot-token': this.bot.token
                 },
-                body
+                data
             })
 
             return res

@@ -38,7 +38,7 @@ class HTTP {
             try {
                 const res = yield axios_1.default.get(`${this.baseURL}${path}`, {
                     headers: {
-                        'Authorization': this.bot.token
+                        'x-bot-token': this.bot.token
                     }
                 });
                 return res;
@@ -51,16 +51,16 @@ class HTTP {
     /**
      * Make a POST request
      * @param path The path to make the request to
-     * @param body An optional body to send with the request
+     * @param data Optional data to send with the request
      */
-    post(path, body) {
+    post(path, data) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
                 const res = yield axios_1.default.post(`${this.baseURL}${path}`, {
                     headers: {
                         'x-bot-token': this.bot.token
                     },
-                    body
+                    data
                 });
                 return res;
             }

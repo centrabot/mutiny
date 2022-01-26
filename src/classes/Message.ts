@@ -98,9 +98,10 @@ export class Message {
 
         const channel = this.bot.channels.get(raw.channel)
         if (!channel) this.channel = raw.channel
-
-        if (channel.type === 'DirectMessage') this.channel = new DirectMessageChannel(this.bot, channel)
-        if (channel.type === 'Group') this.channel = new GroupChannel(this.bot, channel)
-        if (channel.type === 'TextChannel') this.channel = new TextChannel(this.bot, channel)
+        else {
+            if (channel.type === 'DirectMessage') this.channel = new DirectMessageChannel(this.bot, channel)
+            if (channel.type === 'Group') this.channel = new GroupChannel(this.bot, channel)
+            if (channel.type === 'TextChannel') this.channel = new TextChannel(this.bot, channel)
+        }
     }
 }

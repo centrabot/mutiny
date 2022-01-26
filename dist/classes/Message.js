@@ -26,12 +26,14 @@ class Message {
         const channel = this.bot.channels.get(raw.channel);
         if (!channel)
             this.channel = raw.channel;
-        if (channel.type === 'DirectMessage')
-            this.channel = new DirectMessageChannel_1.DirectMessageChannel(this.bot, channel);
-        if (channel.type === 'Group')
-            this.channel = new GroupChannel_1.GroupChannel(this.bot, channel);
-        if (channel.type === 'TextChannel')
-            this.channel = new TextChannel_1.TextChannel(this.bot, channel);
+        else {
+            if (channel.type === 'DirectMessage')
+                this.channel = new DirectMessageChannel_1.DirectMessageChannel(this.bot, channel);
+            if (channel.type === 'Group')
+                this.channel = new GroupChannel_1.GroupChannel(this.bot, channel);
+            if (channel.type === 'TextChannel')
+                this.channel = new TextChannel_1.TextChannel(this.bot, channel);
+        }
     }
 }
 exports.Message = Message;
